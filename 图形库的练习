@@ -1,0 +1,91 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<graphics.h>
+#include<stdio.h>
+#include<mmsystem.h>
+#pragma comment(lib,"winmm.lib")
+void BGM()
+{
+	mciSendString("open ./fl.mp3",0,0,0);
+	mciSendString("play ./fl.mp3", 0, 0, 0);
+}
+
+
+void title()
+{
+	HWND hwnd = GetHWnd();
+	SetWindowText(hwnd,"司令666");
+	int isok=MessageBox(NULL, "司令好棒", "我爱司令", MB_RETRYCANCEL);
+	if (isok == IDRETRY)
+	{
+		printf("6");
+	}
+	else if (isok==IDCANCEL)
+	{
+		printf("sb");
+	}
+}
+int main()
+{  
+	initgraph(666, 666, SHOWCONSOLE);
+	BGM();
+    setbkcolor(GREEN);
+	cleardevice();
+    
+	circle(333, 333, 50);	
+	settextcolor(YELLOW);
+	char a[] = "abcde";
+	outtextxy(340,333,a);
+    setbkmode(TRANSPARENT);
+	IMAGE img;
+	loadimage(&img, "./joke.jpg",100,100);
+	putimage(0, 0, &img);
+
+	while (1)
+	{
+		if (MouseHit())
+		{
+			MOUSEMSG Msg = GetMouseMsg();
+									 
+			switch (Msg.uMsg)      
+			{
+				case WM_LBUTTONDOWN:
+					setfillcolor(GREEN);
+					solidrectangle(
+						400,
+						400,
+						500,
+						430
+					);
+					outtextxy(400, 400, "鼠标左键按下");
+					
+					
+					
+            if (Msg.x > 200 && Msg.x < 500 && Msg.y>200 && Msg.y < 500)
+			{
+				printf("司令666\n");
+			}
+			printf("x=%d y=%d\n", Msg.x, Msg.y);						
+						break;
+				case WM_RBUTTONDOWN:
+					setfillcolor(GREEN);
+					solidrectangle(
+						400,
+						400,
+						500,
+						430
+					);
+					outtextxy(400, 400, "鼠标右键按下");
+					printf("x=%d y=%d\n", Msg.x, Msg.y);					
+					break;
+			}
+		}
+	}
+           
+
+    getchar();
+	closegraph();
+	
+	
+	
+}
