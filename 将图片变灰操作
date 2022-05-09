@@ -1,0 +1,45 @@
+#include<stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include<graphics.h>
+#include<stdio.h>
+#include<mmsystem.h>
+#pragma comment(lib,"winmm.lib")
+
+void togray(IMAGE*j, IMAGE*k)  //j=gray,k=hh(原图)
+{
+	j->Resize(k->getwidth(), j->getheight());
+	DWORD* psrc = GetImageBuffer(k);
+	DWORD* pdst = GetImageBuffer(j);    
+	for (int i = 0; i < k->getwidth()*k->getheight(); i++)
+	{
+		DWORD color = psrc[i];
+		UCHAR r = (UCHAR)color;
+		UCHAR g = (UCHAR)(color >> 8);
+		UCHAR b = (UCHAR)(color >> 16);
+		UCHAR a = (UCHAR)(color >> 24);
+		DWORD arv = (r + g + b) / 3;
+
+		pdst[i] =RGB(arv,arv,arv);
+		
+	}
+	
+
+}
+
+
+int main()
+{
+	initgraph(640, 750);
+	setbkcolor(WHITE);
+	cleardevice();
+	IMAGE hh;
+	loadimage(&hh,("joke.png"), 100, 100);
+	putimage(320, 240,&hh);
+	IMAGE gray=hh;  
+	togray(&gray, &hh);
+	putimage(247, 0, &gray);	
+	getchar();
+
+}
+
+
