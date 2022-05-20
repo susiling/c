@@ -1,0 +1,65 @@
+#include<stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include<graphics.h>
+#include<stdio.h>
+#include<mmsystem.h>
+#pragma comment(lib,"winmm.lib")
+#include<stdlib.h>
+
+
+
+
+int main()
+{
+	
+	int x = 10;
+	int tran = 1;
+	int height = 10;
+	int h = 9;
+	int j = 1;
+
+	while (1)
+	{
+
+		for (j; j < 10; j++)  //这个for的作用用来做总共有几次球的
+		{
+			system("cls");
+			int k = j;
+			for (int i = 0; i < k; i++)  //这边k的换行是在第几次球上
+			{
+				printf("\n");
+
+			}
+
+			for (int q = 0; q < 10; q++)//这边只是用来确定球前面有几个格子的
+				printf(" ");
+			
+
+			
+			printf("O");
+		Sleep(200);
+		}
+		for (j; j>1; j--)  
+		{
+			system("cls");
+			int k = j;
+			for (int i = 0; i < k; i++)
+			{
+				printf("\n");
+
+			}
+
+			for (int q = 0; q < 10; q++)
+				printf(" ");
+			
+			printf("O");
+			Sleep(200);
+		
+		}
+
+
+		
+
+
+
+	}
